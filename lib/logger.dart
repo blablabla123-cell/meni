@@ -1,10 +1,12 @@
+import 'package:flutter/foundation.dart';
 
 class Logger {
-
-  log({required String message }) {
-    // Check if message is empty
+  void log(String message) {
+    // Check if message is Empty
     assert(message.isNotEmpty);
 
-    print('[LOG] - $message');
+    if (kDebugMode) {
+      print('[LOG] - $message');
+    }
   }
 }
