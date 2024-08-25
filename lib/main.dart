@@ -1,8 +1,6 @@
-import 'package:meni/logger.dart';
+import 'package:flutter/material.dart';
+import 'application/application.dart';
 
-void main() async {
-  final Logger logger = Logger();
-
+void main() {
+  runApp(const Application());
 }
-
-

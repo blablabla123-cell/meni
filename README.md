@@ -10,3 +10,10 @@ A new Flutter project.
 5. git commit -m 'message' - создать commit;
 6. git checkout dev - перейти на другую ветку;
 7. git add . - добавить все изменения на отправку.
+
+# Operators
+1. ?? - if-null
+
+# Keywords
+
+
