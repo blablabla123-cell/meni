@@ -6,3 +6,5 @@ linter:
   rules:
     - always_specify_types
     - always_declare_return_types
+    - prefer_single_quotes
+    - always_use_package_imports
