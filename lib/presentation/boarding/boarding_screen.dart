@@ -33,9 +33,3 @@ class _BoardingScreenState extends State<BoardingScreen> {
   }
 }
 
-
-// Widget tree
-
-// Element Widget tree
-
-// Render Widget tree
