@@ -5,5 +5,5 @@ import 'package:meni/application/application.dart';
 void main() {
 
 
-  runApp(Application());
+  runApp(const Application());
 }
