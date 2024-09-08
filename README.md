@@ -10,7 +10,9 @@ A new Flutter project.
 5. git commit -m 'message' - создать commit;
 6. git checkout dev - перейти на другую ветку;
 7. git add . - добавить все изменения на отправку;
-8. git fetch origin - обновить remote список веток.
+8. git fetch origin - обновить remote список веток;
+9. git config --global user.email "you@example.com" - авторизация в Git;
+10. git config --global user.name "Your Name" - авторизация в Git.
 
 # Operators
 1. ?? - if-null
