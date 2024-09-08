@@ -9,7 +9,8 @@ A new Flutter project.
 4. git push - запушить изменения в remote;
 5. git commit -m 'message' - создать commit;
 6. git checkout dev - перейти на другую ветку;
-7. git add . - добавить все изменения на отправку.
+7. git add . - добавить все изменения на отправку;
+8. git fetch origin - обновить remote список веток.
 
 # Operators
 1. ?? - if-null
