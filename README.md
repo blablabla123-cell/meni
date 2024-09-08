@@ -21,3 +21,8 @@ A new Flutter project.
 1. import 'package:flutter/cupertino.dart';
 1. import 'package:flutter/widgets.dart';
 
+# Pull request
+1. Checkout to the branch (git fetch; git checkout);
+2. Make commits;
+3. Create pull request (fill all the fields);
+4. Request for review.
