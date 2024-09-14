@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meni/logger.dart';
-import 'package:meni/presentation/widgets/background_image.dart';
+import 'package:meni/core/widgets/background_gradient.dart';
 import 'package:meni/core/application_constants.dart';
 
 @immutable
@@ -17,10 +16,9 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
-      children: [
-        const BackgroundGradient(imageUrl: ApplicationConstants.backgroundImageUrl),
+      children: <Widget>[
+        const BackgroundGradient(colors: ApplicationConstants.boardingGradientColors),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(title: const Text('Welcome')),
@@ -28,18 +26,11 @@ class _BoardingScreenState extends State<BoardingScreen> {
             children: <Widget>[
               Text(
                 'Welcome $name',
-                style: const TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               TextButton(
                 onPressed: () => setState(() => name = 'Vadim'),
-                child: const Text(
-                  'Skip',
-                  style: TextStyle(color: Colors.white),
-                ),
+                child: const Text('Skip', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
