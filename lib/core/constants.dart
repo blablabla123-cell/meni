@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-abstract class ApplicationConstants {
+abstract class Constants {
   static const String _imagesFolder = 'images/';
+  static const String _iconsFolder = 'icons/';
+
+  // IMAGES
   static const String backgroundImageUrl = '${_imagesFolder}boarding_bg_image.jpg';
+
+  // ICONS
+  // static const String addIcon = '${_iconsFolder}';
 
   static const List<Color> boardingGradientColors = [
     Color(0xff1f005c),

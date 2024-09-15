@@ -15,7 +15,9 @@ A new Flutter project.
 10. git config --global user.name "Your Name" - авторизация в Git.
 
 # Operators
-1. ?? - if-null
+1. ?? - if-null;
+2. ++ - +1;
+3. -- - -1.
 
 # Keywords
 

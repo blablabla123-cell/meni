@@ -8,3 +8,5 @@ linter:
     - always_declare_return_types
     - prefer_single_quotes
     - always_use_package_imports
+    - avoid_empty_else
+    - avoid_redundant_argument_values
