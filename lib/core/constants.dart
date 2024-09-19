@@ -10,7 +10,7 @@ abstract class Constants {
   // ICONS
   // static const String addIcon = '${_iconsFolder}';
 
-  static const List<Color> boardingGradientColors = [
+  static const List<Color> boardingGradientColors = <Color>[
     Color(0xff1f005c),
     Color(0xff5b0060),
     Color(0xff870160),
