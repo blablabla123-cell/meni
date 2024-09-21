@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:meni/application/utils/storage_interface.dart';
+import 'package:meni/application/utils/key_storage.dart';
 import 'package:meni/business_logic/text_size_inherited_widget.dart';
 import 'package:meni/logger.dart';
 
 import 'package:meni/presentation/boarding/boarding_screen.dart';
 import 'package:meni/core/themes.dart';
-import 'package:meni/application/utils/storage_repository.dart';
+import 'package:meni/application/utils/shared_repository.dart';
 
 class Application extends StatelessWidget {
-  const Application({super.key});
+  const Application({required this.storage, super.key});
+  final SharedRepository storage;
 
   @override
   Widget build(BuildContext context) {
-    final StorageRepository storage = StorageRepository();
-
-    final Logger logger = Logger();
-
-    storage.getFile();
-
-    storage.write('Meni');
-    final value = storage.read();
-
-    logger.log(value.toString());
+    storage.write(KeyStorage.name, 'Merei');
+    print(storage.read(KeyStorage.name));
 
     return MaterialApp(
       theme: Themes.darkTheme,
