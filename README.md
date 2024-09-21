@@ -14,6 +14,10 @@ A new Flutter project.
 9. git config --global user.email "you@example.com" - авторизация в Git;
 10. git config --global user.name "Your Name" - авторизация в Git.
 
+# Flutter commands
+1. flutter pub get - подтянуть зависимости;
+2. Command + P - коммандная строка VS Code.
+
 # Operators
 1. ?? - if-null;
 2. ++ - +1;
