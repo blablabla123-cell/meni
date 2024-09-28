@@ -1,64 +1,52 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: UserInfoScreen(),
-  ));
-}
+import 'package:meni/core/constants.dart';
 
 class UserInfoScreen extends StatefulWidget {
+  const UserInfoScreen({super.key});
+
   @override
-  _UserInfoScreenState createState() => _UserInfoScreenState();
+  State<UserInfoScreen> createState() => _UserInfoScreenState();
 }
 
 class _UserInfoScreenState extends State<UserInfoScreen> {
-  final TextEditingController _nameController = TextEditingController();
   DateTime? _birthDate;
+  String _name = '';
 
   @override
   Widget build(BuildContext context) {
-return Scaffold(
-      appBar: AppBar(
-        title: Text("Привет!"),
-      ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Привет!')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Введите ваше имя:'),
-            TextField(
-              controller: _nameController,
-              onChanged: (text) {
-                setState(() {}); // Обновляем экран при изменении текста
-              },
-            ),
-            SizedBox(height: 20),
-            Text('Укажите дату рождения:'),
+          children: <Widget>[
+            const Text('Введите ваше имя:'),
+            TextField(onChanged: (String text) => setState(() => _name = text)),
+            const SizedBox(height: 20),
+            const Text('Укажите дату рождения:'),
+            const SizedBox(height: 20),
             TextButton(
-              onPressed: () => _pickDate(context),
-              child: Text(_birthDate == null ? 'Выбрать дату' : 'Дата: ${_birthDate!.toLocal()}'.split(' ')[0]),
+              onPressed: () async => _pickDate,
+              child: const Text('Выбрать дату'),
             ),
-            SizedBox(height: 20),
-            Text('Имя: ${_nameController.text}'), // Отображение имени моментально
-            if (_birthDate != null)
-              Text('Дата рождения: ${_birthDate!.toLocal().toString().split(' ')[0]}'),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            if (_name.isNotEmpty) Text('Имя: $_name'), // Отображение имени моментально
+            if (_birthDate != null) Text('Дата рождения: ${Constants.dateFormat.format(_birthDate!)}'),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (_nameController.text.isNotEmpty && _birthDate != null) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        content: Text(
-                            'Имя: ${_nameController.text}\nДата рождения: ${_birthDate!.toLocal().toString().split(' ')[0]}'),
-                      );
-                    },
-                  );
+                if (_name.isNotEmpty && _birthDate != null) {
+                  // TODO: Validation
+                  // Name is less than 3 symbols --> error
+                  // List of signs
+                  // birth date > 12 years
+                  // await or then to make synschroures code completion
+                  // write (create keys key repository)
+                  // Navigator push replacement Main Screen
                 }
               },
-              child: Text('Далее'),
+              child: const Text('Далее'),
             ),
           ],
         ),
@@ -66,17 +54,16 @@ return Scaffold(
     );
   }
 
-  Future<void> _pickDate(BuildContext context) async {
-    final picked = await showDatePicker(
+  Future<void> _pickDate() async {
+    final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime(2100),
     );
+
     if (picked != null) {
-      setState(() {
-        _birthDate = picked;
-      });
+      setState(() => _birthDate = picked);
     }
   }
 }

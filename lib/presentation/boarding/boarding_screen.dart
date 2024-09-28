@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meni/business_logic/text_size_inherited_widget.dart';
 import 'package:meni/core/widgets/background_gradient.dart';
 import 'package:meni/core/constants.dart';
 import 'package:meni/presentation/boarding/widgets/page_indicator.dart';
+import 'package:meni/presentation/user_info/user_info_screen.dart';
 
 @immutable
 class BoardingScreen extends StatefulWidget {
@@ -37,7 +37,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double? size = TextSizeInheritedWidget.of(context)?.size;
+    // final double? size = TextSizeInheritedWidget.of(context)?.size;
 
     return Stack(
       children: <Widget>[
@@ -64,7 +64,12 @@ class _BoardingScreenState extends State<BoardingScreen> {
                   );
                 },
                 right: () {
-                  if (pageIndex == 3) return;
+                  if (pageIndex == 3) {
+                    Navigator.of(context).push(MaterialPageRoute<UserInfoScreen>(
+                      builder: (BuildContext context) => const UserInfoScreen(),
+                    ));
+                    return;
+                  }
 
                   pageIndex++;
 

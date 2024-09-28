@@ -18,7 +18,8 @@ A new Flutter project.
 # Flutter commands
 1. flutter pub get - подтянуть зависимости;
 2. Command + P - коммандная строка VS Code;
-3. F2 - rename.
+3. F2 - rename;
+4. flutter pub upgrade - обновить пакеты.
 
 # Operators
 1. ?? - if-null;
