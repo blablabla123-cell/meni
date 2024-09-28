@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/constants.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({super.key});
+  const UserInfoScreen({required this.fileStorage, super.key});
+  final StorageRepository fileStorage;
 
   @override
   State<UserInfoScreen> createState() => _UserInfoScreenState();
@@ -14,6 +16,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.fileStorage.read());
     return Scaffold(
       appBar: AppBar(title: const Text('Привет!')),
       body: Padding(
@@ -27,7 +30,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             const Text('Укажите дату рождения:'),
             const SizedBox(height: 20),
             TextButton(
-              onPressed: () async => _pickDate,
+              onPressed: _pickDate,
               child: const Text('Выбрать дату'),
             ),
             const SizedBox(height: 20),
@@ -36,6 +39,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                widget.fileStorage.write('name=$_name;birth_date=$_birthDate');
                 if (_name.isNotEmpty && _birthDate != null) {
                   // TODO: Validation
                   // Name is less than 3 symbols --> error

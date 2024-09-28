@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/widgets/background_gradient.dart';
 import 'package:meni/core/constants.dart';
 import 'package:meni/presentation/boarding/widgets/page_indicator.dart';
@@ -6,7 +7,8 @@ import 'package:meni/presentation/user_info/user_info_screen.dart';
 
 @immutable
 class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({super.key});
+  const BoardingScreen({required this.storage, super.key});
+  final StorageRepository storage;
 
   @override
   State<BoardingScreen> createState() => _BoardingScreenState();
@@ -66,7 +68,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                 right: () {
                   if (pageIndex == 3) {
                     Navigator.of(context).push(MaterialPageRoute<UserInfoScreen>(
-                      builder: (BuildContext context) => const UserInfoScreen(),
+                      builder: (BuildContext context) => UserInfoScreen(fileStorage: widget.storage),
                     ));
                     return;
                   }

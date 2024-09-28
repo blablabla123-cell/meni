@@ -5,41 +5,37 @@ import 'package:meni/application/utils/storage_interface.dart';
 
 class StorageRepository implements StorageInterface {
   @override
-  File? getFile() {
-    String? path;
-
-    getApplicationDocumentsDirectory().then((Directory directory) {
-      path = directory.path;
-    }).catchError((dynamic error) {
-      // TODO:
-    });
-
-    if (path != null) {
-      return File('$path/user_database.txt');
-    }
-
-    return null;
-  }
-
-  @override
   bool write(String value) {
-    final File? file = getFile();
-
-    if (file != null) {
-      file.writeAsStringSync(value);
+    if (file == null) return false;
+    try {
+      file?.writeAsStringSync(value);
       return true;
+    } catch (e) {
+      return false;
     }
-    return false;
   }
 
   @override
   String? read() {
-    final File? file = getFile();
-
-    if (file != null) {
-      return file.readAsStringSync();
+    if (file == null) return null;
+    try {
+      return file?.readAsStringSync();
+    } catch (e) {
+      return null;
     }
-
-    return null;
   }
+
+  @override
+  Future<bool> init() async {
+    try {
+      final Directory directory = await getApplicationDocumentsDirectory();
+      file = File('${directory.path}/user_database.txt');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  File? file;
 }
