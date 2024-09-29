@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/widgets/background_gradient.dart';
 import 'package:meni/core/constants.dart';
-import 'package:meni/presentation/boarding/widgets/page_indicator.dart';
+import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/presentation/user_info/user_info_screen.dart';
 
 @immutable
@@ -54,18 +54,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
                 itemCount: pages.length,
                 itemBuilder: (BuildContext context, int index) => Center(child: pages[index]),
               ),
-              PageIndicator(
-                left: () {
-                  if (pageIndex == 0) return;
-                  pageIndex--;
-
-                  controller.animateToPage(
-                    pageIndex,
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeInOut,
-                  );
-                },
-                right: () {
+              CoreElevatedButton(
+                onPressed: () {
                   if (pageIndex == 3) {
                     Navigator.of(context).push(MaterialPageRoute<UserInfoScreen>(
                       builder: (BuildContext context) => UserInfoScreen(fileStorage: widget.storage),
@@ -81,7 +71,36 @@ class _BoardingScreenState extends State<BoardingScreen> {
                     curve: Curves.easeInOut,
                   );
                 },
-              ),
+                title: 'Continue',
+              )
+              // PageIndicator(
+              //   left: () {
+              //     if (pageIndex == 0) return;
+              //     pageIndex--;
+
+              //     controller.animateToPage(
+              //       pageIndex,
+              //       duration: const Duration(milliseconds: 400),
+              //       curve: Curves.easeInOut,
+              //     );
+              //   },
+              //   right: () {
+              //     if (pageIndex == 3) {
+              //       Navigator.of(context).push(MaterialPageRoute<UserInfoScreen>(
+              //         builder: (BuildContext context) => UserInfoScreen(fileStorage: widget.storage),
+              //       ));
+              //       return;
+              //     }
+
+              //     pageIndex++;
+
+              //     controller.animateToPage(
+              //       pageIndex,
+              //       duration: const Duration(milliseconds: 400),
+              //       curve: Curves.easeInOut,
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),

@@ -5,10 +5,17 @@ import 'package:meni/application/utils/storage_interface.dart';
 
 class StorageRepository implements StorageInterface {
   @override
-  bool write(String value) {
+  bool write(String key, String value) {
     if (file == null) return false;
     try {
-      file?.writeAsStringSync(value);
+      final String? content = read();
+      if (content != null) {
+        if (content.contains(key)) {
+          return false;
+        }
+      }
+
+      file?.writeAsStringSync('$key=$value', mode: FileMode.append);
       return true;
     } catch (e) {
       return false;

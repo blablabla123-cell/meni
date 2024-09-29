@@ -5,7 +5,7 @@ abstract class StorageInterface {
 
   Future<bool> init();
 
-  bool write(String value);
+  bool write(String key, String value);
 
   String? read();
 }

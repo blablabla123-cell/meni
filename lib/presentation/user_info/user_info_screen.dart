@@ -40,7 +40,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                widget.fileStorage.write('name=$_name;birth_date=$_birthDate');
+                widget.fileStorage.write('name', _name);
+                widget.fileStorage.write('birth_date', _birthDate.toString());
+                
                 if (_name.isNotEmpty && _birthDate != null) {
                   // TODO: Validation
                   // Name is less than 3 symbols --> error
