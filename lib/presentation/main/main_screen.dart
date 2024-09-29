@@ -8,11 +8,12 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: Colors.transparent,
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          const BackgroundGradient(colors: Constants.boardingGradientColors),
+          const BackgroundGradient(colors: ColorConstants.boardingGradientColors),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -66,7 +67,7 @@ class BackgroundGradient extends StatelessWidget {
   }
 }
 
-class Constants {
+class ColorConstants {
   static const List<Color> boardingGradientColors = <Color>[
     Colors.blue,
     Colors.green

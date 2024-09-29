@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/constants.dart';
+import 'package:meni/presentation/main/main_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({required this.fileStorage, super.key});
@@ -48,6 +49,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   // await or then to make synschroures code completion
                   // write (create keys key repository)
                   // Navigator push replacement Main Screen
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute<MainScreen>(
+                      builder: (BuildContext context) => const MainScreen('I love you'),
+                    ),
+                  );
                 }
               },
               child: const Text('Далее'),
