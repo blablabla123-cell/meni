@@ -10,14 +10,25 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         children: <Widget>[
           const BackgroundGradient(colors: Constants.boardingGradientColors),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Icon(Icons.account_circle),
-              Text(text),
+              const Icon(
+                Icons.account_circle,
+                size: 64.0, // Добавим размер для иконки
+              ),
+              const SizedBox(height: 16.0), // Немного отступа для улучшения интерфейса
+              Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 24.0, // Стиль текста вынесен в константу
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 24.0), // Еще немного отступа между текстом и кнопкой
               IconButton(
                 icon: const Icon(Icons.favorite),
                 iconSize: 32.0,
@@ -56,5 +67,8 @@ class BackgroundGradient extends StatelessWidget {
 }
 
 class Constants {
-  static const List<Color> boardingGradientColors = <Color>[Colors.blue, Colors.green];
+  static const List<Color> boardingGradientColors = <Color>[
+    Colors.blue,
+    Colors.green
+  ];
 }
