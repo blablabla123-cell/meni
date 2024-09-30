@@ -53,7 +53,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   // Navigator push replacement Main Screen
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute<MainScreen>(
-                      builder: (BuildContext context) => const MainScreen('I love you'),
+                      builder: (BuildContext context) => const MainScreen(),
                     ),
                   );
                 }
