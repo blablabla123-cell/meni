@@ -29,7 +29,6 @@ class _BoardingScreenState extends State<BoardingScreen> {
       Constants.backgroundImage3,
     ];
 
-    // Список текстов для 3 страниц
     pages = const <Text>[
       Text('Page 1', style: TextStyle(color: Colors.white)),
       Text('Page 2', style: TextStyle(color: Colors.white)),
@@ -54,13 +53,19 @@ class _BoardingScreenState extends State<BoardingScreen> {
             return LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
-              stops: [0.7, 1.0],
+              colors: [
+                Colors.transparent,          
+                Colors.black.withOpacity(0.1),
+                Colors.black.withOpacity(0.3),
+                Colors.black.withOpacity(0.5),
+                Colors.black.withOpacity(0.7), 
+              ],
+              stops: [0.0, 0.4, 0.6, 0.8, 1.0],  
             ).createShader(bounds);
           },
           blendMode: BlendMode.dstIn,
           child: Image.asset(
-            images[pageIndex], 
+            images[pageIndex],  
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
