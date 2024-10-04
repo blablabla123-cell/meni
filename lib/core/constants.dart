@@ -5,7 +5,10 @@ abstract class Constants {
   static const String _iconsFolder = 'icons/';
 
   // IMAGES
-  static const String backgroundImageUrl = '${_imagesFolder}boarding_bg_image.jpg';
+  static const String backgroundImage1 = '${_imagesFolder}588762f1e516bd85eaf3a52c09e93e01.jpg.jpg';
+  static const String backgroundImage2 = '${_imagesFolder}boarding_bg_image.jpg';
+  static const String backgroundImage3 = '${_imagesFolder}f01169672a969cd912811e554976e54b.jpg';
+
 
   // ICONS
   // static const String addIcon = '${_iconsFolder}';

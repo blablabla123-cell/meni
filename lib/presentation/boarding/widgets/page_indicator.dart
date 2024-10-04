@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PageIndicator extends StatelessWidget {
-  const PageIndicator({required this.left, required this.right, super.key});
+  const PageIndicator({required this.right, super.key});
 
-  final void Function() left;
   final void Function() right;
 
   @override
@@ -11,13 +10,9 @@ class PageIndicator extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        IconButton(
-          onPressed: left,
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-        ),
-        IconButton(
+        ElevatedButton(
           onPressed: right,
-          icon: const Icon(Icons.arrow_forward, color: Colors.white),
+          child: const Text('Continue'),
         ),
       ],
     );
