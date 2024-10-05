@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 abstract class Constants {
-  static const String _imagesFolder = 'images/';
+  static const String _imagesFolder = 'assets/images/';
   // static const String _iconsFolder = 'icons/';
 
   // IMAGES
-  static const String backgroundImage1 = '${_imagesFolder}588762f1e516bd85eaf3a52c09e93e01.jpg';
-  static const String backgroundImage2 = '${_imagesFolder}boarding_bg_image.jpg';
-  static const String backgroundImage3 = '${_imagesFolder}f01169672a969cd912811e554976e54b.jpg';
+  static const String backgroundImage1 = '${_imagesFolder}boarding_bg_1.jpg';
+  static const String backgroundImage2 = '${_imagesFolder}boarding_bg_2.jpg';
+  static const String backgroundImage3 = '${_imagesFolder}boarding_bg_3.jpg';
 
 
   // ICONS
