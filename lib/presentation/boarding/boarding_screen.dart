@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
-import 'package:meni/business_logic/text_size_inherited_widget.dart';
 import 'package:meni/core/constants.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
-import 'package:meni/presentation/boarding/widgets/page_indicator.dart';
-import 'package:meni/presentation/user_info/user_info_screen.dart';
 
 @immutable
 class BoardingScreen extends StatefulWidget {
@@ -26,8 +23,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
   void initState() {
     super.initState();
 
-
-    images = [
+    images = <String>[
       Constants.backgroundImage1,
       Constants.backgroundImage2,
       Constants.backgroundImage3,
@@ -57,19 +53,19 @@ class _BoardingScreenState extends State<BoardingScreen> {
             return LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,          
+              colors: <Color>[
+                Colors.transparent,
                 Colors.black.withOpacity(0.1),
                 Colors.black.withOpacity(0.3),
                 Colors.black.withOpacity(0.5),
-                Colors.black.withOpacity(0.7), 
+                Colors.black.withOpacity(0.7),
               ],
-              stops: [0.0, 0.4, 0.6, 0.8, 1.0],  
+              stops: const <double>[0.0, 0.4, 0.6, 0.8, 1.0],
             ).createShader(bounds);
           },
           blendMode: BlendMode.dstIn,
           child: Image.asset(
-            images[pageIndex],  
+            images[pageIndex],
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -82,10 +78,10 @@ class _BoardingScreenState extends State<BoardingScreen> {
             children: <Widget>[
               PageView.builder(
                 controller: controller,
-                itemCount: pages.length, 
+                itemCount: pages.length,
                 onPageChanged: (int index) {
                   setState(() {
-                    pageIndex = index; 
+                    pageIndex = index;
                   });
                 },
                 itemBuilder: (BuildContext context, int index) => Center(child: pages[index]),
@@ -96,19 +92,19 @@ class _BoardingScreenState extends State<BoardingScreen> {
                 right: 20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       'Well Cum User ${pageIndex + 1}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 28,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       'Your personal ass istant for devination and reading hand online ${pageIndex + 1}.', // не придумал чет как поставить свой текст на каждую страницу
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         color: Colors.white,
                       ),
@@ -118,8 +114,9 @@ class _BoardingScreenState extends State<BoardingScreen> {
               ),
               Positioned(
                 bottom: 50,
-                child: PageIndicator(
-                  right: () {
+                child: CoreElevatedButton(
+                  title: 'Continue',
+                  onPressed: () {
                     if (pageIndex < pages.length - 1) {
                       pageIndex++;
                       controller.animateToPage(
@@ -127,8 +124,6 @@ class _BoardingScreenState extends State<BoardingScreen> {
                         duration: const Duration(milliseconds: 400),
                         curve: Curves.easeInOut,
                       );
-                    } else {
-                      print('End');
                     }
                   },
                 ),
