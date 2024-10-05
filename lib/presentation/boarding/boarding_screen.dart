@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/business_logic/text_size_inherited_widget.dart';
 import 'package:meni/core/constants.dart';
+import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/presentation/boarding/widgets/page_indicator.dart';
+import 'package:meni/presentation/user_info/user_info_screen.dart';
 
 @immutable
 class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({super.key});
+  const BoardingScreen({required this.storage, super.key});
+  final StorageRepository storage;
 
   @override
   State<BoardingScreen> createState() => _BoardingScreenState();
@@ -44,7 +48,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double? size = TextSizeInheritedWidget.of(context)?.size;
+    // final double? size = TextSizeInheritedWidget.of(context)?.size;
 
     return Stack(
       children: <Widget>[

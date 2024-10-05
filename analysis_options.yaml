@@ -10,3 +10,4 @@ linter:
     - always_use_package_imports
     - avoid_empty_else
     - avoid_redundant_argument_values
+    - always_put_required_named_parameters_first

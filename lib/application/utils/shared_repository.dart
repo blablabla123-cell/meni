@@ -23,6 +23,6 @@ class SharedRepository implements SharedInterface {
   @override
   Future<bool> remove(String key) async => await prefs?.remove(key) ?? false;
 
-
+  @override
   SharedPreferences? prefs;
 }

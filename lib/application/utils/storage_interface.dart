@@ -1,9 +1,11 @@
 import 'dart:io';
 
 abstract class StorageInterface {
-  File? getFile();
+  File? file;
 
-  bool write(String value);
+  Future<bool> init();
+
+  bool write(String key, String value);
 
   String? read();
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 abstract class Constants {
   static const String _imagesFolder = 'images/';
-  static const String _iconsFolder = 'icons/';
+  // static const String _iconsFolder = 'icons/';
 
   // IMAGES
   static const String backgroundImage1 = '${_imagesFolder}588762f1e516bd85eaf3a52c09e93e01.jpg';
@@ -23,4 +24,7 @@ abstract class Constants {
     Color(0xfff39060),
     Color(0xffffb56b),
   ];
+
+  // DATE FORMAT
+  static final DateFormat dateFormat = DateFormat.yMMMd();
 }

@@ -12,12 +12,18 @@ A new Flutter project.
 7. git add . - добавить все изменения на отправку;
 8. git fetch origin - обновить remote список веток;
 9. git config --global user.email "you@example.com" - авторизация в Git;
-10. git config --global user.name "Your Name" - авторизация в Git.
+10. git config --global user.name "Your Name" - авторизация в Git;
+11. git reset - discard changes;
+12. git merge main origin - подятнуть изменения из главной ветки с Git;
+13. git stash - черновик сохранить;
+14. git stash apply [0] - достать stash;
+15. git pull origin main.
 
 # Flutter commands
 1. flutter pub get - подтянуть зависимости;
 2. Command + P - коммандная строка VS Code;
-3. F2 - rename.
+3. F2 - rename;
+4. flutter pub upgrade - обновить пакеты.
 
 # Operators
 1. ?? - if-null;
