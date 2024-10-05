@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/constants.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
+import 'package:meni/models/boarding_data.dart';
 
 @immutable
 class BoardingScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
   int pageIndex = 0;
 
   late final List<String> images;
-  late final List<Text> pages;
+  late final List<BoardingData> data;
 
   @override
   void initState() {
@@ -29,10 +30,20 @@ class _BoardingScreenState extends State<BoardingScreen> {
       Constants.backgroundImage3,
     ];
 
-    pages = const <Text>[
-      Text('Page 1', style: TextStyle(color: Colors.white)),
-      Text('Page 2', style: TextStyle(color: Colors.white)),
-      Text('Page 3', style: TextStyle(color: Colors.white)),
+    data = [
+      BoardingData(
+          title: 'Welcome to Meni',
+          subtitle: 'Your personal assistant for devination and reading hand online',
+          loadValue: 33),
+      BoardingData(
+          title: 'Horoscope & compatibility',
+          subtitle: 'Get a dailt horoscope corresponding to your zodiac sign, check compantibility with othe signs',
+          loadValue: 67),
+      BoardingData(
+          title: 'Tarot & other',
+          subtitle:
+              'Get an individual astrologer\'s consultation, use the fortune-teller\'s knowledge to remember the best, be in the present and learn about the future',
+          loadValue: 100),
     ];
   }
 
@@ -51,85 +62,74 @@ class _BoardingScreenState extends State<BoardingScreen> {
         ShaderMask(
           shaderCallback: (Rect bounds) {
             return LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
               colors: <Color>[
                 Colors.transparent,
-                Colors.black.withOpacity(0.1),
-                Colors.black.withOpacity(0.3),
-                Colors.black.withOpacity(0.5),
+                Colors.black.withOpacity(0.9),
+                Colors.black.withOpacity(0.8),
                 Colors.black.withOpacity(0.7),
+                Colors.black.withOpacity(0.6),
               ],
-              stops: const <double>[0.0, 0.4, 0.6, 0.8, 1.0],
+              stops: const <double>[0.0, 0.2, 0.4, 0.6, 0.8],
             ).createShader(bounds);
           },
           blendMode: BlendMode.dstIn,
-          child: Image.asset(
-            images[pageIndex],
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+          child: Image.asset(images[pageIndex], fit: BoxFit.cover),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body: Stack(
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              PageView.builder(
-                controller: controller,
-                itemCount: pages.length,
-                onPageChanged: (int index) {
-                  setState(() {
-                    pageIndex = index;
-                  });
-                },
-                itemBuilder: (BuildContext context, int index) => Center(child: pages[index]),
-              ),
-              Positioned(
-                bottom: 100,
-                left: 20,
-                right: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Well Cum User ${pageIndex + 1}',
-                      style: const TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Your personal ass istant for devination and reading hand online ${pageIndex + 1}.', // не придумал чет как поставить свой текст на каждую страницу
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 50,
-                child: CoreElevatedButton(
-                  title: 'Continue',
-                  onPressed: () {
-                    if (pageIndex < pages.length - 1) {
-                      pageIndex++;
-                      controller.animateToPage(
-                        pageIndex,
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                  },
-                ),
-              ),
-            ],
+          body: PageView.builder(
+            controller: controller,
+            itemCount: data.length,
+            onPageChanged: (int index) => setState(() => pageIndex = index),
+            itemBuilder: (_, int index) => _DataItem(data: data[index]),
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DataItem extends StatelessWidget {
+  const _DataItem({required this.data, super.key});
+
+  final BoardingData data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          data.title,
+          style: const TextStyle(
+            fontSize: 28,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          data.subtitle,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 16),
+        CoreElevatedButton(
+          title: 'Continue',
+          onPressed: () {
+            // if (pageIndex < data.length - 1) {
+            //   pageIndex++;
+            //   controller.animateToPage(
+            //     pageIndex,
+            //     duration: const Duration(milliseconds: 400),
+            //     curve: Curves.easeInOut,
+            //   );
+            // }
+          },
         ),
       ],
     );
