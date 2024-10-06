@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/constants.dart';
+import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/models/boarding_data.dart';
 
@@ -92,7 +93,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
 }
 
 class _DataItem extends StatelessWidget {
-  const _DataItem({required this.data, super.key});
+  const _DataItem({required this.data});
 
   final BoardingData data;
 
@@ -103,20 +104,10 @@ class _DataItem extends StatelessWidget {
       children: [
         Text(
           data.title,
-          style: const TextStyle(
-            fontSize: 28,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 10),
-        Text(
-          data.subtitle,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-          ),
-        ),
+        Text(data.subtitle, textAlign: TextAlign.center),
         const SizedBox(height: 16),
         CoreElevatedButton(
           title: 'Continue',
