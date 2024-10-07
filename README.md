@@ -17,6 +17,7 @@ A new Flutter project.
 12. git merge main origin - подятнуть изменения из главной ветки с Git;
 13. git stash - черновик сохранить;
 14. git stash apply [0] - достать stash;
+15. git pull origin main.
 
 # Flutter commands
 1. flutter pub get - подтянуть зависимости;
