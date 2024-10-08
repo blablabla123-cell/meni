@@ -14,7 +14,7 @@ class Application extends StatelessWidget {
     return MaterialApp(
       theme: Themes.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: TextSizeInheritedWidget(size: 32.0, child: BoardingScreen(storage: storage)),
+      home: TextSizeInheritedWidget(size: 32.0, child: BoardingScreen(fileStorage: storage)),
     );
   }
 }
