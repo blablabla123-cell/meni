@@ -17,7 +17,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.fileStorage.read());
     return Scaffold(
       appBar: AppBar(title: const Text('Привет!')),
       body: Padding(
@@ -44,7 +43,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 widget.fileStorage.write('birth_date', _birthDate.toString());
                 
                 if (_name.isNotEmpty && _birthDate != null) {
-                  // TODO: Validation
                   // Name is less than 3 symbols --> error
                   // List of signs
                   // birth date > 12 years

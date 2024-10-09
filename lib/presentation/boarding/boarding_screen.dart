@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/constants.dart';
-import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/models/boarding_data.dart';
 import 'package:meni/presentation/user_info/user_info_screen.dart';
