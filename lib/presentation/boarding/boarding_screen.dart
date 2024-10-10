@@ -38,7 +38,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
           loadValue: 33),
       BoardingData(
           title: 'Horoscope & compatibility',
-          subtitle: 'Get a dailt horoscope corresponding to your zodiac sign, check compantibility with othe signs',
+          subtitle: 'Get a daily horoscope corresponding to your zodiac sign, check compatibility with other signs',
           loadValue: 67),
       BoardingData(
           title: 'Tarot & other',
@@ -56,8 +56,6 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final double? size = TextSizeInheritedWidget.of(context)?.size;
-
     return Stack(
       children: <Widget>[
         ShaderMask(
@@ -84,7 +82,12 @@ class _BoardingScreenState extends State<BoardingScreen> {
             controller: controller,
             itemCount: data.length,
             onPageChanged: (int index) => setState(() => pageIndex = index),
-            itemBuilder: (_, int index) => _DataItem(data: data[index]),
+            itemBuilder: (_, int index) => _DataItem(
+              data: data[index],
+              controller: controller,
+              pageIndex: pageIndex,
+              totalPages: data.length,
+            ),
           ),
         ),
       ],
@@ -93,9 +96,17 @@ class _BoardingScreenState extends State<BoardingScreen> {
 }
 
 class _DataItem extends StatelessWidget {
-  const _DataItem({required this.data});
+  const _DataItem({
+    required this.data,
+    required this.controller,
+    required this.pageIndex,
+    required this.totalPages,
+  });
 
   final BoardingData data;
+  final PageController controller;
+  final int pageIndex;
+  final int totalPages;
 
   @override
   Widget build(BuildContext context) {
@@ -109,18 +120,47 @@ class _DataItem extends StatelessWidget {
         const SizedBox(height: 10),
         Text(data.subtitle, textAlign: TextAlign.center),
         const SizedBox(height: 16),
-        CoreElevatedButton(
-          title: 'Continue',
-          onPressed: () {
-            // if (pageIndex < data.length - 1) {
-            //   pageIndex++;
-            //   controller.animateToPage(
-            //     pageIndex,
-            //     duration: const Duration(milliseconds: 400),
-            //     curve: Curves.easeInOut,
-            //   );
-            // }
-          },
+
+        Text(
+          '${data.loadValue}%', 
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+        const SizedBox(height: 8),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: LinearProgressIndicator(
+            value: data.loadValue / 100, 
+            backgroundColor: const Color.fromARGB(255, 138, 92, 194),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            minHeight: 2, 
+          ),
+        ),
+        const SizedBox(height: 12),
+
+        Padding(
+          padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.1,
+              ) +
+              EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * 0.05,
+              ),
+          child: CoreElevatedButton(
+            title: 'Continue',
+            onPressed: () {
+              if (pageIndex < totalPages - 1) {
+                controller.nextPage(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                );
+              } else {
+                // Нужна логика, потом чекну
+              }
+            },
+          ),
         ),
       ],
     );
