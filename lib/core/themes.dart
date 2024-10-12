@@ -16,7 +16,7 @@ abstract class Themes {
           return Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [
+                colors: <Color>[
                   CoreColors.elevatedButtonBackground1,
                   CoreColors.elevatedButtonBackground2,
                 ],

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/constants.dart';
-import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/models/boarding_data.dart';
 import 'package:meni/presentation/user_info/user_info_screen.dart';
 
-
 @immutable
 class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({required this.storage, super.key});
-  final StorageRepository storage;
+  const BoardingScreen({required this.fileStorage, super.key});
+  final StorageRepository fileStorage;
 
   @override
   State<BoardingScreen> createState() => _BoardingScreenState();
@@ -33,7 +31,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
       Constants.backgroundImage3,
     ];
 
-    data = [
+    data = <BoardingData>[
       BoardingData(
           title: 'Welcome to Meni',
           subtitle: 'Your personal assistant for devination and reading hand online',
@@ -89,6 +87,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
               controller: controller,
               pageIndex: pageIndex,
               totalPages: data.length,
+              fileStorage: widget.fileStorage,
             ),
           ),
         ),
@@ -103,18 +102,20 @@ class _DataItem extends StatelessWidget {
     required this.controller,
     required this.pageIndex,
     required this.totalPages,
+    required this.fileStorage,
   });
 
   final BoardingData data;
   final PageController controller;
   final int pageIndex;
   final int totalPages;
+  final StorageRepository fileStorage;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [
+      children: <Widget>[
         Text(
           data.title,
           style: Theme.of(context).textTheme.titleMedium,
@@ -122,27 +123,24 @@ class _DataItem extends StatelessWidget {
         const SizedBox(height: 10),
         Text(data.subtitle, textAlign: TextAlign.center),
         const SizedBox(height: 16),
-
         Text(
-          '${data.loadValue}%', 
+          '${data.loadValue}%',
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.normal,
           ),
         ),
         const SizedBox(height: 8),
-
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: LinearProgressIndicator(
-            value: data.loadValue / 100, 
+            value: data.loadValue / 100,
             backgroundColor: const Color.fromARGB(255, 138, 92, 194),
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            minHeight: 2, 
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+            minHeight: 2,
           ),
         ),
         const SizedBox(height: 12),
-
         Padding(
           padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.1,
@@ -161,7 +159,9 @@ class _DataItem extends StatelessWidget {
               } else {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const UserInfoScreen()),
+                  MaterialPageRoute<UserInfoScreen>(
+                    builder: (BuildContext context) => UserInfoScreen(fileStorage: fileStorage),
+                  ),
                 );
               }
             },
