@@ -63,7 +63,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
               pageIndex: pageIndex,
               totalPages: data.length,
               onPressed: () {
-                if (index < 3) {
+                if (index < 2) {
                   controller.nextPage(
                     duration: const Duration(milliseconds: 400),
                     curve: Curves.easeInOut,
