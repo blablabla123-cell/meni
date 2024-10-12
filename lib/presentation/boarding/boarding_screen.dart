@@ -4,6 +4,8 @@ import 'package:meni/core/constants.dart';
 import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/models/boarding_data.dart';
+import 'package:meni/presentation/user_info/user_info_screen.dart';
+
 
 @immutable
 class BoardingScreen extends StatefulWidget {
@@ -157,7 +159,10 @@ class _DataItem extends StatelessWidget {
                   curve: Curves.easeInOut,
                 );
               } else {
-                // Нужна логика, потом чекну
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const UserInfoScreen()),
+                );
               }
             },
           ),
