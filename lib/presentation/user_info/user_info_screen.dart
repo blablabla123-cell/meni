@@ -4,8 +4,8 @@ import 'package:meni/core/constants.dart';
 import 'package:meni/presentation/main/main_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({required this.fileStorage, super.key});
-  final StorageRepository fileStorage;
+  const UserInfoScreen({required this.storage, super.key});
+  final StorageRepository storage;
 
   @override
   State<UserInfoScreen> createState() => _UserInfoScreenState();
@@ -39,9 +39,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                widget.fileStorage.write('name', _name);
-                widget.fileStorage.write('birth_date', _birthDate.toString());
-                
+                widget.storage.write('name', _name);
+                widget.storage.write('birth_date', _birthDate.toString());
+
                 if (_name.isNotEmpty && _birthDate != null) {
                   // Name is less than 3 symbols --> error
                   // List of signs
