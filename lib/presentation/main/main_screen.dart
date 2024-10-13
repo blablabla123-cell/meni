@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-// Импортируйте необходимые виджеты и модели из вашего проекта
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/core/widgets/background_gradient.dart';
+import 'package:meni/core/themes.dart';
 
 // Класс для хранения данных градиента
 class ColorConstants {
@@ -92,19 +92,19 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Horoscope',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_border_outlined),
             label: 'Compatibility',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.casino),
+            icon: Icon(Icons.casino_outlined),
             label: 'Tarot',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_outlined),
+            icon: Icon(Icons.back_hand_outlined),
             label: 'Palm scanner',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person_outlined),
             label: 'Profile',
           ),
         ],
@@ -112,6 +112,8 @@ class _MainScreenState extends State<MainScreen> {
         selectedItemColor: const Color(0xFF5B2EAA), // Цвет выбранного элемента
         unselectedItemColor: Colors.grey, // Цвет невыбранных элементов
         onTap: _onItemTapped, // Функция, вызываемая при нажатии
+        backgroundColor: Colors.black, // Темный фон
+        type: BottomNavigationBarType.fixed, // Необходимо для 5 и более элементов
       ),
     );
   }
