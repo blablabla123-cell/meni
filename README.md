@@ -23,7 +23,9 @@ A new Flutter project.
 1. flutter pub get - подтянуть зависимости;
 2. Command + P - коммандная строка VS Code;
 3. F2 - rename;
-4. flutter pub upgrade - обновить пакеты.
+4. flutter pub upgrade - обновить пакеты;
+5. Shift + Alt + Arrow Up / Arrow Down;
+6. Alt + Arrow Up / Arrow Down.
 
 # Operators
 1. ?? - if-null;

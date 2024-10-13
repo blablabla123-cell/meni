@@ -4,7 +4,7 @@ import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/models/boarding_data.dart';
 import 'package:meni/presentation/boarding/data/boarding_data.dart';
 import 'package:meni/presentation/boarding/widgets/boarding_page.dart';
-import 'package:meni/presentation/user_info/user_info_screen.dart';
+import 'package:meni/presentation/user_info/user_name_screen.dart';
 
 @immutable
 class BoardingScreen extends StatefulWidget {
@@ -73,8 +73,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute<UserInfoScreen>(
-                      builder: (BuildContext context) => UserInfoScreen(storage: widget.storage),
+                    MaterialPageRoute<UserNameScreen>(
+                      builder: (BuildContext context) => UserNameScreen(storage: widget.storage),
                     ),
                   );
                 }
