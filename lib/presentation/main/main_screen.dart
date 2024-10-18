@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/core/widgets/background_gradient.dart';
 import 'package:meni/core/themes.dart';
@@ -7,8 +8,8 @@ import 'package:meni/core/themes.dart';
 // Класс для хранения данных градиента
 class ColorConstants {
   static const List<Color> boardingGradientColors = <Color>[
-    Color.fromARGB(255, 44, 6, 116),
-    Color.fromARGB(255, 25, 5, 66),
+    CoreColors.darkGrey
+   
   ];
 }
 
@@ -65,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
                   child: Stack( // Stack для наложения изображения руки и круга
                     alignment: Alignment.center,
                     children: <Widget>[
-                      Image.asset('assets/images/mainscreen.png', fit: BoxFit.contain), // Изображение руки (замените на свой путь)
+                      //Image.asset('assets/images/mainscreen.png', fit: BoxFit.contain), // Изображение руки (замените на свой путь)
                       CustomPaint( // Рисуем круг со знаками зодиака
                         size: const Size(250, 250),
                         painter: ZodiacCirclePainter(),
@@ -108,12 +109,12 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Profile',
           ),
         ],
+        backgroundColor:CoreColors.darkGrey,
         currentIndex: _selectedIndex, // Индекс текущего выбранного элемента
-        selectedItemColor: const Color(0xFF5B2EAA), // Цвет выбранного элемента
-        unselectedItemColor: Colors.grey, // Цвет невыбранных элементов
+        selectedItemColor: CoreColors.purple, // Цвет выбранного элемента
+        unselectedItemColor: const Color.fromARGB(255, 121, 119, 119), // Цвет невыбранных элементов
         onTap: _onItemTapped, // Функция, вызываемая при нажатии
-        backgroundColor: Colors.black, // Темный фон
-        type: BottomNavigationBarType.fixed, // Необходимо для 5 и более элементов
+         type: BottomNavigationBarType.fixed,
       ),
     );
   }
