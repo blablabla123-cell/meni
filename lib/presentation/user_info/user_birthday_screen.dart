@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meni/core/constants.dart';
+import 'package:meni/core/widgets/core_elevated_button.dart';
+import 'package:meni/presentation/main/main_screen.dart';
 
 class UserBirthdayScreen extends StatefulWidget {
   const UserBirthdayScreen({super.key});
@@ -36,6 +38,22 @@ class _UserBirthdayScreenState extends State<UserBirthdayScreen> {
         ),
         if (_birthDate != null) Text('Дата рождения: ${Constants.dateFormat.format(_birthDate!)}'),
         const SizedBox(height: 20),
+        Row( 
+          children: [
+            Expanded( 
+              child: CoreElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute<MainScreen>(
+                      builder: (_) => const MainScreen(),
+                    ),
+                  );
+                },
+                title: 'Continue',
+              ),
+            ),
+          ],
+        ), 
       ],
     );
   }
