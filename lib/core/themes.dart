@@ -1,8 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meni/core/core_colors.dart';
 
 abstract class Themes {
   static ThemeData darkTheme = ThemeData(
+    cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+        textTheme: CupertinoTextThemeData(
+      dateTimePickerTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+    )),
+
     /// BG COLOR
     scaffoldBackgroundColor: CoreColors.darkGrey,
 
@@ -41,7 +47,9 @@ abstract class Themes {
     /// BOTTOM NAV BAR STYLE
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: CoreColors.purple,
-      unselectedItemColor: CoreColors.darkGrey,
+      unselectedItemColor: CoreColors.lightGrey,
+      backgroundColor: CoreColors.darkGrey,
+      type: BottomNavigationBarType.fixed,
     ),
 
     /// TEXTFIELD STYLES
@@ -53,7 +61,7 @@ abstract class Themes {
       ),
       errorBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: CoreColors.error),
-      )
+      ),
     ),
   );
 }

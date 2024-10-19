@@ -10,7 +10,6 @@ abstract class Constants {
   static const String backgroundImage2 = '${_imagesFolder}boarding_bg_2.jpg';
   static const String backgroundImage3 = '${_imagesFolder}boarding_bg_3.jpg';
 
-
   // ICONS
   // static const String addIcon = '${_iconsFolder}';
 
@@ -27,4 +26,5 @@ abstract class Constants {
 
   // DATE FORMAT
   static final DateFormat dateFormat = DateFormat.yMMMd();
+  static final DateFormat zodiacDateFormat = DateFormat.MMMMd();
 }

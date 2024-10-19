@@ -25,7 +25,8 @@ A new Flutter project.
 3. F2 - rename;
 4. flutter pub upgrade - обновить пакеты;
 5. Shift + Alt + Arrow Up / Arrow Down;
-6. Alt + Arrow Up / Arrow Down.
+6. Alt + Arrow Up / Arrow Down;
+7. Alt + ESC - autocomplete.
 
 # Operators
 1. ?? - if-null;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meni/application/utils/key_storage.dart';
 import 'package:meni/application/utils/storage_repository.dart';
-import 'package:meni/presentation/main/main_screen.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
-import 'package:meni/presentation/user_info/user_birthday_screen.dart';
+import 'package:meni/presentation/user_info/user_date_of_birth_screen.dart';
 
 class UserNameScreen extends StatefulWidget {
   const UserNameScreen({required this.storage, super.key});
@@ -58,11 +58,11 @@ class _UserNameScreenState extends State<UserNameScreen> {
                           return;
                         }
 
-                        widget.storage.write('name', _name);
+                        widget.storage.write(KeyStorage.name, _name);
 
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute<UserBirthdayScreen>(
-                            builder: (_) => const UserBirthdayScreen(),
+                          MaterialPageRoute<UserDateOfBirthScreen>(
+                            builder: (_) => const UserDateOfBirthScreen(),
                           ),
                         );
                       },

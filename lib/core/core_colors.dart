@@ -5,6 +5,7 @@ abstract class CoreColors {
   static const Color purpleGradientDark = Color.fromARGB(255, 61, 33, 120);
 
   static const Color darkGrey = Color.fromARGB(255, 31, 33, 37);
+  static const Color lightGrey = Color.fromARGB(255, 147, 149, 151);
   static const Color purple = Color.fromARGB(255, 112, 72, 238);
   static const Color error = Color.fromARGB(255, 253, 2, 4);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
-import 'package:meni/models/boarding_data.dart';
+import 'package:meni/presentation/boarding/data/models/boarding_data.dart';
 
 class BoardingPage extends StatelessWidget {
   const BoardingPage({

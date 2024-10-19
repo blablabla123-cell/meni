@@ -1,5 +1,5 @@
 import 'package:meni/core/constants.dart';
-import 'package:meni/models/boarding_data.dart';
+import 'package:meni/presentation/boarding/data/models/boarding_data.dart';
 
 abstract class BoardingScreenData {
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meni/application/utils/key_storage.dart';
 import 'package:meni/application/utils/storage_repository.dart';
-import 'package:meni/models/boarding_data.dart';
+import 'package:meni/presentation/boarding/data/models/boarding_data.dart';
 import 'package:meni/presentation/boarding/data/boarding_data.dart';
 import 'package:meni/presentation/boarding/widgets/boarding_page.dart';
 import 'package:meni/presentation/user_info/user_name_screen.dart';

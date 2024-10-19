@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meni/application/utils/key_storage.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/themes.dart';
 import 'package:meni/presentation/boarding/boarding_screen.dart';
+import 'package:meni/presentation/user_info/user_date_of_birth_screen.dart';
 import 'package:meni/presentation/user_info/user_name_screen.dart';
 
 class Application extends StatefulWidget {
@@ -14,10 +16,12 @@ class Application extends StatefulWidget {
 
 class _ApplicationState extends State<Application> {
   bool isBoarding = false;
+  bool isDateOfBirth = false;
 
   @override
   void initState() {
     isBoarding = widget.storage.read()?.contains('boarding=true') ?? false;
+    isDateOfBirth = widget.storage.read()?.contains(KeyStorage.name) ?? false;
     super.initState();
   }
 
@@ -27,7 +31,11 @@ class _ApplicationState extends State<Application> {
       theme: Themes.darkTheme,
       debugShowCheckedModeBanner: false,
       // Ternary operator
-      home: isBoarding ? UserNameScreen(storage: widget.storage) : BoardingScreen(storage: widget.storage),
+      home: isBoarding
+          ? isDateOfBirth
+              ? const UserDateOfBirthScreen()
+              : UserNameScreen(storage: widget.storage)
+          : BoardingScreen(storage: widget.storage),
     );
   }
 }
