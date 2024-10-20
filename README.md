@@ -3,6 +3,7 @@
 A new Flutter project.
 
 # Git
+
 1. git branch - показать все доступные ветки;
 2. git pull - подтянуть изменения по ветке;
 3. git fetch - обновить список веток;
@@ -17,9 +18,11 @@ A new Flutter project.
 12. git merge main origin - подятнуть изменения из главной ветки с Git;
 13. git stash - черновик сохранить;
 14. git stash apply [0] - достать stash;
-15. git pull origin main.
+15. git pull origin main;
+16. git restore , - remove all changes.
 
 # Flutter commands
+
 1. flutter pub get - подтянуть зависимости;
 2. Command + P - коммандная строка VS Code;
 3. F2 - rename;
@@ -29,6 +32,7 @@ A new Flutter project.
 7. Alt + ESC - autocomplete.
 
 # Operators
+
 1. ?? - if-null;
 2. ++ - +1;
 3. -- - -1.
@@ -36,11 +40,13 @@ A new Flutter project.
 # Keywords
 
 # imports
+
 1. import 'package:flutter/material.dart';
 1. import 'package:flutter/cupertino.dart';
 1. import 'package:flutter/widgets.dart';
 
 # Pull request
+
 1. Checkout to the branch (git fetch; git checkout);
 2. Make commits;
 3. Create pull request (fill all the fields);
