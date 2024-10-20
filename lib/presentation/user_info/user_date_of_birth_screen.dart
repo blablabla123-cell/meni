@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meni/core/constants.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/presentation/main/main_screen.dart';
-import 'package:meni/presentation/user_info/data/models/zodiac_sign.dart';
-import 'package:meni/presentation/user_info/data/zodiac_signs_data.dart';
 import 'package:meni/presentation/user_info/widgets/date_picker.dart';
 import 'package:meni/presentation/user_info/widgets/zodiac_picker.dart';
 
@@ -15,7 +13,7 @@ class UserDateOfBirthScreen extends StatefulWidget {
 }
 
 class _UserDateOfBirthScreenState extends State<UserDateOfBirthScreen> {
-  DateTime? _birthDate;
+  DateTime _dateOfBirth = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +23,13 @@ class _UserDateOfBirthScreenState extends State<UserDateOfBirthScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-           const ZodiacPicker(),
+            ZodiacPicker(dateOfBirth: _dateOfBirth),
             const SizedBox(height: 20),
             Text("What's your date of bith?", style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 20),
-            const DatePicker(),
-            if (_birthDate != null) Text('Дата рождения: ${Constants.dateFormat.format(_birthDate!)}'),
+            DatePicker(onDateTimeChanged: (DateTime value) {
+              setState(() => _dateOfBirth = value);
+            }),
             const SizedBox(height: 20),
             Row(
               children: <Widget>[
