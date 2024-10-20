@@ -9,3 +9,4 @@ Future<void> main() async {
   await storage.init();
   runApp(Application(storage: storage));
 }
+// 1232
