@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:meni/core/core_colors.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
+import 'package:meni/presentation/loading/loading_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -74,8 +74,12 @@ class _MainScreenState extends State<MainScreen> {
                   // Кнопка "Перейти к камере"
                   title: 'Go to camera',
                   onPressed: () {
-                    // Здесь добавьте логику для открытия камеры
-                  },
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute<LoadingScreen>(
+                          builder: (_) =>  const LoadingScreen(),
+                        ),
+                      );
+                    },
                 ),
               ],
             ),
@@ -108,7 +112,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
         currentIndex: _selectedIndex, // Индекс текущего выбранного элемента
-
         onTap: _onItemTapped, // Функция, вызываемая при нажатии
       ),
     );
@@ -132,7 +135,7 @@ class ZodiacCirclePainter extends CustomPainter {
     // Здесь нужно добавить логику для рисования знаков зодиака
     // вокруг круга.  Рекомендуется использовать изображения или иконки.
     // Пример с текстом (замените на изображения/иконки):
-    const List<String> zodiacSymbols = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
+    const List<String> zodiacSymbols = <String>['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
 
     final TextPainter textPainter = TextPainter(
       textDirection: TextDirection.ltr,
