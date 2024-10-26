@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:meni/core/constants.dart';
 import 'package:meni/presentation/user_info/data/models/zodiac_sign.dart';
 import 'package:meni/presentation/user_info/data/zodiac_signs_data.dart';
-import 'package:meni/presentation/user_info/widgets/zodiac_item.dart';
+import 'package:meni/presentation/user_info/widgets/zodiac_sign_icons_list.dart';
 
 class ZodiacPicker extends StatefulWidget {
   const ZodiacPicker({required this.dateOfBirth, super.key});
@@ -16,40 +14,27 @@ class ZodiacPicker extends StatefulWidget {
 
 class _ZodiacPickerState extends State<ZodiacPicker> {
   final List<ZodiacSign> data = ZodiacSignsData.data;
-  final ScrollController controller = ScrollController();
   int selectedIndex = 0;
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  void didUpdateWidget(covariant ZodiacPicker oldWidget) {
+    selectedIndex = getSelectedIndex(data, widget.dateOfBirth);
+    super.didUpdateWidget(oldWidget);
   }
+
+  // init state
+  // did update widget
+  // build
+  // dispose
 
   @override
   Widget build(BuildContext context) {
-    selectedIndex = getSelectedIndex(data, widget.dateOfBirth);
-    print(selectedIndex);
-
     final String start = Constants.zodiacDateFormat.format(data[selectedIndex].range.start);
     final String end = Constants.zodiacDateFormat.format(data[selectedIndex].range.end);
 
     return Column(
       children: <Widget>[
-        SizedBox(
-          height: 100,
-          child: ListView.separated(
-            controller: controller,
-            physics: const NeverScrollableScrollPhysics(),
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(width: 16);
-            },
-            itemCount: data.length,
-            itemBuilder: (_, int index) {
-              return ZodiacItem(zodiac: data[index]);
-            },
-            scrollDirection: Axis.horizontal,
-          ),
-        ),
+        Zodiacs(zodiacs: data, selectedIndex: selectedIndex),
         const SizedBox(height: 12),
         Text(data[selectedIndex].name, style: Theme.of(context).textTheme.bodyLarge),
         Text('$start - $end'),
