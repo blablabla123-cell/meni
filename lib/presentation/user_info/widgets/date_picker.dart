@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class DatePicker extends StatelessWidget {
-  const DatePicker({super.key});
+  const DatePicker({required this.onDateTimeChanged, super.key});
+
+  final void Function(DateTime value) onDateTimeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class DatePicker extends StatelessWidget {
         selectionOverlayBuilder: (BuildContext context, {required int columnCount, required int selectedIndex}) {
           return null;
         },
-        onDateTimeChanged: (DateTime value) {},
+        onDateTimeChanged: onDateTimeChanged,
       ),
     );
   }

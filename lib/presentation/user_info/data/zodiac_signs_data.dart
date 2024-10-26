@@ -45,7 +45,12 @@ abstract class ZodiacSignsData {
     ),
     ZodiacSign(
       name: 'Capricornus',
-      range: DateTimeRange(start: DateTime(0, 12, 22), end: DateTime(1, 1, 19)),
+      range: DateTimeRange(start: DateTime(0, 12, 22), end: DateTime(0, 12, 31)),
+      icon: '♑',
+    ),
+        ZodiacSign(
+      name: 'Capricornus',
+      range: DateTimeRange(start: DateTime(0), end: DateTime(0, 1, 20)),
       icon: '♑',
     ),
     ZodiacSign(
