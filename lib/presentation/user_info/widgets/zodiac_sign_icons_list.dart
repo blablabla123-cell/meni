@@ -16,7 +16,7 @@ class Zodiacs extends StatefulWidget {
 }
 
 class _ZodiacsState extends State<Zodiacs> {
-  late List<ZodiacSign> _localZodiacs;
+  late List<ZodiacSign> localZodiacs;
 
   @override
   void initState() {
@@ -33,16 +33,35 @@ class _ZodiacsState extends State<Zodiacs> {
   }
 
   void _update() {
-    // New data
-    _localZodiacs = List<ZodiacSign>.from(widget.zodiacs);
+    // Picked Zodiac
+    final ZodiacSign selectedZodiac = widget.zodiacs[widget.selectedIndex];
 
-    final ZodiacSign selectedZodiacSign = _localZodiacs[widget.selectedIndex];
+    // New List
+    localZodiacs = List<ZodiacSign>.from(widget.zodiacs);
 
-    _localZodiacs.removeAt(widget.selectedIndex);
+    // If noy any picked
+    if (widget.zodiacs[widget.selectedIndex] != widget.zodiacs[8] &&
+        widget.zodiacs[widget.selectedIndex] != widget.zodiacs[9]) {
+      localZodiacs.remove(widget.zodiacs[8]);
+    } 
+    
+    if(widget.zodiacs[widget.selectedIndex] == widget.zodiacs[8]) {
+       localZodiacs.remove(widget.zodiacs[9]);
+    }
 
-    _localZodiacs.shuffle();
+    if(widget.zodiacs[widget.selectedIndex] == widget.zodiacs[9]) {
+       localZodiacs.remove(widget.zodiacs[8]);
+    }
 
-    _localZodiacs.insert(2, selectedZodiacSign);
+    final int updatedIndex = localZodiacs.indexOf(selectedZodiac);
+
+    localZodiacs = <ZodiacSign>[
+      localZodiacs[(updatedIndex - 2 + localZodiacs.length) % localZodiacs.length], // 10
+      localZodiacs[(updatedIndex - 1 + localZodiacs.length) % localZodiacs.length], // 11
+      localZodiacs[updatedIndex], // 0
+      localZodiacs[(updatedIndex + 1) % localZodiacs.length], // 1
+      localZodiacs[(updatedIndex + 2) % localZodiacs.length], // 2
+    ];
   }
 
   @override
@@ -52,7 +71,7 @@ class _ZodiacsState extends State<Zodiacs> {
       children: List<Widget>.generate(
         5,
         (int index) => Text(
-          _localZodiacs[index].icon,
+          localZodiacs[index].icon,
           style: TextStyle(fontSize: index == 2 ? 64 : 48),
         ),
       ),

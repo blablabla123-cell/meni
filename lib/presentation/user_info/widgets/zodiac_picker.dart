@@ -22,11 +22,6 @@ class _ZodiacPickerState extends State<ZodiacPicker> {
     super.didUpdateWidget(oldWidget);
   }
 
-  // init state
-  // did update widget
-  // build
-  // dispose
-
   @override
   Widget build(BuildContext context) {
     final String start = Constants.zodiacDateFormat.format(data[selectedIndex].range.start);
