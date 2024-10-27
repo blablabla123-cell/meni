@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:meni/presentation/user_info/data/models/zodiac_sign.dart';
 
 class Zodiacs extends StatefulWidget {
@@ -12,39 +13,45 @@ class Zodiacs extends StatefulWidget {
 }
 
 class _ZodiacsState extends State<Zodiacs> {
-  final ScrollController controller = ScrollController();
+  late List<ZodiacSign> localZodiacs;
 
   @override
-  void didUpdateWidget(covariant Zodiacs oldWidget) {
-   
-    super.didUpdateWidget(oldWidget);
+  void initState() {
+    super.initState();
+    _update();
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  void didUpdateWidget(covariant Zodiacs oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selectedIndex != widget.selectedIndex) {
+      _update();
+    }
+  }
+
+  void _update() {
+    // Create a new list excluding the selected zodiac sign
+    localZodiacs = List<ZodiacSign>.from(widget.zodiacs);
+
+    final ZodiacSign selected = localZodiacs[widget.selectedIndex];
+
+    localZodiacs.removeAt(widget.selectedIndex);
+
+    localZodiacs.shuffle();
+
+    localZodiacs.insert(2, selected);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: ListView.separated(
-        controller: controller,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          final bool isSelected = widget.selectedIndex == index;
-
-          return Text(
-            widget.zodiacs[index].icon,
-            style: TextStyle(fontSize: isSelected ? 64 : 32),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(width: 16);
-        },
-        itemCount: widget.zodiacs.length,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: List<Widget>.generate(
+        5,
+        (int index) => Text(
+          localZodiacs[index].icon,
+          style: TextStyle(fontSize: index == 2 ? 64 : 48),
+        ),
       ),
     );
   }
