@@ -21,12 +21,12 @@ abstract class ZodiacSignsData {
     ZodiacSign(
       name: 'Cancer',
       range: DateTimeRange(start: DateTime(0, 6, 22), end: DateTime(0, 7, 22)),
-      icon: '♈',
+      icon: '♋',
     ),
     ZodiacSign(
       name: 'Leo',
       range: DateTimeRange(start: DateTime(0, 7, 23), end: DateTime(0, 8, 22)),
-      icon: '♈',
+      icon: '♌',
     ),
     ZodiacSign(
       name: 'Virgo',
