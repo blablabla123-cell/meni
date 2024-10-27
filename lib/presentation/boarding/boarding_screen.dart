@@ -69,7 +69,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                     curve: Curves.easeInOut,
                   );
                 } else {
-                  widget.storage.write(KeyStorage.boarding, 'true');
+                  widget.storage.write(KeyStorage.userBoarding, 'true');
 
                   Navigator.pushReplacement(
                     context,

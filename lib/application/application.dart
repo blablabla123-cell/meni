@@ -3,6 +3,7 @@ import 'package:meni/application/utils/key_storage.dart';
 import 'package:meni/application/utils/storage_repository.dart';
 import 'package:meni/core/themes.dart';
 import 'package:meni/presentation/boarding/boarding_screen.dart';
+import 'package:meni/presentation/main/main_screen.dart';
 import 'package:meni/presentation/user_info/user_date_of_birth_screen.dart';
 import 'package:meni/presentation/user_info/user_name_screen.dart';
 
@@ -15,13 +16,33 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  bool isBoarding = false;
-  bool isDateOfBirth = false;
+  bool isUserBoarding = false;
+  bool isUserDateOfBirth = false;
+  bool isUserName = false;
+  Widget? home;
 
   @override
   void initState() {
-    isBoarding = widget.storage.read()?.contains('boarding=true') ?? false;
-    isDateOfBirth = widget.storage.read()?.contains(KeyStorage.name) ?? false;
+    isUserBoarding = widget.storage.read()?.contains(KeyStorage.userBoarding) ?? false;
+    isUserName = widget.storage.read()?.contains(KeyStorage.name) ?? false;
+    isUserDateOfBirth = widget.storage.read()?.contains(KeyStorage.userDateOfBirth) ?? false;
+
+    if (!isUserBoarding) {
+      home = BoardingScreen(storage: widget.storage);
+    }
+
+    if (isUserName && isUserDateOfBirth && isUserBoarding) {
+      home = const MainScreen();
+    }
+
+    if (isUserName && !isUserDateOfBirth) {
+      home = UserDateOfBirthScreen(storage: widget.storage);
+    }
+
+    if (!isUserName && !isUserDateOfBirth && isUserBoarding) {
+      home = UserNameScreen(storage: widget.storage);
+    }
+
     super.initState();
   }
 
@@ -31,11 +52,7 @@ class _ApplicationState extends State<Application> {
       theme: Themes.darkTheme,
       debugShowCheckedModeBanner: false,
       // Ternary operator
-      home: isBoarding
-          ? isDateOfBirth
-              ? const UserDateOfBirthScreen()
-              : UserNameScreen(storage: widget.storage)
-          : BoardingScreen(storage: widget.storage),
+      home: home,
     );
   }
 }

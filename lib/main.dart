@@ -7,6 +7,6 @@ Future<void> main() async {
 
   final StorageRepository storage = StorageRepository();
   await storage.init();
+  print(storage.read());
   runApp(Application(storage: storage));
 }
-// 1232

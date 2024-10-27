@@ -62,7 +62,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
 
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute<UserDateOfBirthScreen>(
-                            builder: (_) => const UserDateOfBirthScreen(),
+                            builder: (_) => UserDateOfBirthScreen(storage: widget.storage),
                           ),
                         );
                       },
