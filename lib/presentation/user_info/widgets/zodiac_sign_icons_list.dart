@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:meni/presentation/user_info/data/models/zodiac_sign.dart';
 
 class Zodiacs extends StatefulWidget {
-  const Zodiacs({required this.zodiacs, required this.selectedIndex, super.key});
+  const Zodiacs({
+    required this.zodiacs,
+    required this.selectedIndex,
+    super.key,
+  });
 
   final List<ZodiacSign> zodiacs;
   final int selectedIndex;
@@ -13,7 +16,7 @@ class Zodiacs extends StatefulWidget {
 }
 
 class _ZodiacsState extends State<Zodiacs> {
-  late List<ZodiacSign> localZodiacs;
+  late List<ZodiacSign> _localZodiacs;
 
   @override
   void initState() {
@@ -30,16 +33,16 @@ class _ZodiacsState extends State<Zodiacs> {
   }
 
   void _update() {
-    // Create a new list excluding the selected zodiac sign
-    localZodiacs = List<ZodiacSign>.from(widget.zodiacs);
+    // New data
+    _localZodiacs = List<ZodiacSign>.from(widget.zodiacs);
 
-    final ZodiacSign selected = localZodiacs[widget.selectedIndex];
+    final ZodiacSign selectedZodiacSign = _localZodiacs[widget.selectedIndex];
 
-    localZodiacs.removeAt(widget.selectedIndex);
+    _localZodiacs.removeAt(widget.selectedIndex);
 
-    localZodiacs.shuffle();
+    _localZodiacs.shuffle();
 
-    localZodiacs.insert(2, selected);
+    _localZodiacs.insert(2, selectedZodiacSign);
   }
 
   @override
@@ -49,7 +52,7 @@ class _ZodiacsState extends State<Zodiacs> {
       children: List<Widget>.generate(
         5,
         (int index) => Text(
-          localZodiacs[index].icon,
+          _localZodiacs[index].icon,
           style: TextStyle(fontSize: index == 2 ? 64 : 48),
         ),
       ),
