@@ -1,7 +1,9 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:meni/application/utils/network_repository.dart';
 import 'package:meni/core/widgets/core_elevated_button.dart';
 import 'package:meni/presentation/loading/loading_screen.dart';
+import 'package:meni/presentation/main/horoscope_nav_bar_item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -11,6 +13,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final NetworkRepository network = NetworkRepository();
   int _selectedIndex = 3; // Индекс выбранного элемента в BottomNavigationBar
 
   void _onItemTapped(int index) {
@@ -59,10 +62,32 @@ class _MainScreenState extends State<MainScreen> {
                   itemCount: 12, // Количество знаков зодиака
                   itemBuilder: (BuildContext context, int index) {
                     const List<String> zodiacSymbols = <String>[
-                      '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'
+                      '♈',
+                      '♉',
+                      '♊',
+                      '♋',
+                      '♌',
+                      '♍',
+                      '♎',
+                      '♏',
+                      '♐',
+                      '♑',
+                      '♒',
+                      '♓'
                     ];
                     const List<String> zodiacNames = <String>[
-                      'Овен', 'Телец', 'Близнецы', 'Рак', 'Лев', 'Дева', 'Весы', 'Скорпион', 'Стрелец', 'Козерог', 'Водолей', 'Рыбы'
+                      'Овен',
+                      'Телец',
+                      'Близнецы',
+                      'Рак',
+                      'Лев',
+                      'Дева',
+                      'Весы',
+                      'Скорпион',
+                      'Стрелец',
+                      'Козерог',
+                      'Водолей',
+                      'Рыбы'
                     ];
                     return GestureDetector(
                       onTap: () => _onZodiacSelected(zodiacNames[index]), // Обработка нажатия на знак
@@ -106,62 +131,7 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: Colors.transparent, // Прозрачный фон AppBar
         elevation: 0, // Убираем тень AppBar
       ),
-      body: Stack(
-        // Используем Stack для наложения элементов
-        children: <Widget>[
-          Center(
-            // Центрируем содержимое по горизонтали
-            child: Column(
-              // Выравниваем элементы по вертикали
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  // Текст "Сфотографируйте свою ладонь"
-                  'Take a photo of your palm',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                const SizedBox(height: 16), // Отступ
-                const Text(
-                  // Инструкции для пользователя
-                  'Position the camera above your hand so that the\nlines on your palm are clearly visible.\nPay attention to the lighting.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
-                ),
-                const SizedBox(height: 32), // Отступ
-                SizedBox(
-                  // SizedBox для ограничения размера изображения и CustomPaint
-                  height: 250,
-                  width: 250,
-                  child: Stack(
-                    // Stack для наложения изображения руки и круга
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      //Image.asset('assets/images/mainscreen.png', fit: BoxFit.contain), // Изображение руки (замените на свой путь)
-                      CustomPaint(
-                        // Рисуем круг со знаками зодиака
-                        size: const Size(250, 250),
-                        painter: ZodiacCirclePainter(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 32), // Отступ
-                CoreElevatedButton(
-                  // Кнопка "Перейти к камере"
-                  title: 'Go to camera',
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute<LoadingScreen>(
-                        builder: (_) => const LoadingScreen(),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: HoroscopeNavBarItem(network: network),
       bottomNavigationBar: BottomNavigationBar(
         // Нижняя панель навигации
         items: const <BottomNavigationBarItem>[
@@ -210,9 +180,7 @@ class ZodiacCirclePainter extends CustomPainter {
 
     // Здесь нужно добавить логику для рисования знаков зодиака
     // вокруг круга. Рекомендуется использовать изображения или иконки.
-    const List<String> zodiacSymbols = <String>[
-      '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'
-    ];
+    const List<String> zodiacSymbols = <String>['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
 
     final TextPainter textPainter = TextPainter(
       textDirection: TextDirection.ltr,
